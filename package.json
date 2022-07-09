@@ -1,0 +1,15 @@
+{
+  "name": "3dengine",
+  "version": "1.0.0",
+  "description": "Toy 3D engine",
+  "scripts": {
+    "dev": "parcel src/index.html"
+  },
+  "author": "Jonathan Lloyd",
+  "license": "MIT",
+  "devDependencies": {
+    "parcel": "^2.6.2",
+    "parcel-bundler": "^1.12.5",
+    "typescript": "^4.7.4"
+  }
+}
