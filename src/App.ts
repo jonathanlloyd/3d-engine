@@ -175,6 +175,69 @@ const setup = (ctx: Context, state: State) => {
   const model = state.model;
 
   for (let rowNum = -2; rowNum < 3; rowNum++) {
+    const xDelta = 0;
+    const yDelta = rowNum;
+    const zDelta = 0;
+
+    const bottomFrontLeft = model.addVertex({
+      x: -0.5 + xDelta,
+      y: 0.5 + yDelta,
+      z: 0.5 + zDelta,
+    });
+    const bottomFrontRight = model.addVertex({
+      x: 0.5 + xDelta,
+      y: 0.5 + yDelta,
+      z: 0.5 + zDelta,
+    });
+    const bottomBackLeft = model.addVertex({
+      x: -0.5 + xDelta,
+      y: 0.5 + yDelta,
+      z: -0.5 + zDelta,
+    });
+    const bottomBackRight = model.addVertex({
+      x: 0.5 + xDelta,
+      y: 0.5 + yDelta,
+      z: -0.5 + zDelta,
+    });
+
+    const topFrontLeft = model.addVertex({
+      x: -0.5 + xDelta,
+      y: -0.5 + yDelta,
+      z: 0.5 + zDelta,
+    });
+    const topFrontRight = model.addVertex({
+      x: 0.5 + xDelta,
+      y: -0.5 + yDelta,
+      z: 0.5 + zDelta,
+    });
+    const topBackLeft = model.addVertex({
+      x: -0.5 + xDelta,
+      y: -0.5 + yDelta,
+      z: -0.5 + zDelta,
+    });
+    const topBackRight = model.addVertex({
+      x: 0.5 + xDelta,
+      y: -0.5 + yDelta,
+      z: -0.5 + zDelta,
+    });
+
+    model.addEdge(bottomFrontLeft, bottomFrontRight);
+    model.addEdge(bottomFrontRight, bottomBackRight);
+    model.addEdge(bottomBackRight, bottomBackLeft);
+    model.addEdge(bottomBackLeft, bottomFrontLeft);
+
+    model.addEdge(topFrontLeft, topFrontRight);
+    model.addEdge(topFrontRight, topBackRight);
+    model.addEdge(topBackRight, topBackLeft);
+    model.addEdge(topBackLeft, topFrontLeft);
+
+    model.addEdge(bottomFrontLeft, topFrontLeft);
+    model.addEdge(bottomFrontRight, topFrontRight);
+    model.addEdge(bottomBackLeft, topBackLeft);
+    model.addEdge(bottomBackRight, topBackRight);
+  }
+
+  for (let rowNum = -2; rowNum < 3; rowNum++) {
     const xDelta = rowNum;
     const yDelta = 0;
     const zDelta = 0;
@@ -269,13 +332,15 @@ window.onload = () => {
   const canvas: HTMLCanvasElement = <HTMLCanvasElement>(
     document.getElementById('stage')
   );
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
   const canvasCtx = canvas.getContext('2d');
   if (!canvasCtx) {
     throw new Error('Failed to acquire canvas context');
   }
 
   const state = new State();
-  const ctx = new Context(canvasCtx);
+  const ctx = new Context(canvasCtx, canvas.width, canvas.height);
 
   const canvasRect = canvas.getBoundingClientRect();
   window.onmousemove = e => {
@@ -284,9 +349,6 @@ window.onload = () => {
   };
 
   setup(ctx, state);
-
-  canvas.width = ctx.width;
-  canvas.height = ctx.height;
 
   const loop = () => {
     draw(ctx, state);
