@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Toy 3D engine",
   "scripts": {
-    "dev": "parcel src/index.html"
+    "dev": "parcel src/index.html",
+    "build": "parcel build --public-url ./ src/index.html"
   },
   "author": "Jonathan Lloyd",
   "license": "MIT",
