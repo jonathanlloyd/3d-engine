@@ -5,9 +5,11 @@
 [![build status][build-status-badge]][build-status-url]
 [![license][license-badge]][license-url]
 
+[Demo](https://jonathanlloyd.github.io/3d-engine/)
+
 Learning project to build a simple 3D engine that can render basic wireframes
 
-[Demo](https://jonathanlloyd.github.io/3d-engine/)
+![Screenshot of the 3d engine in action](https://raw.githubusercontent.com/jonathanlloyd/3d-engine/main/screenshot.png)
 
 </div>
 
